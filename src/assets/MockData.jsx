@@ -1,7 +1,7 @@
 export const Categories = [
   "Electronics",
   "Fashion",
-  "Home & Kitchen",
+  "Home",
   "Beauty",
   "Sports",
   "Automotive",
