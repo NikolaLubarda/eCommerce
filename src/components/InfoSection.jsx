@@ -11,7 +11,7 @@ const InfoSection = () => {
     {
       icon: <FaShippingFast className="text-3xl text-red-600" />,
       title: "Fast Shipping",
-      description: "Get your orders delivered quickly and safely.",
+      description: "šGet your orders delivered quickly and safely.",
     },
     {
       icon: <FaHeadset className="text-3xl text-red-600" />,
