@@ -2,6 +2,7 @@ import React from "react";
 import { Categories } from "../assets/MockData";
 import heroImage from "../assets/Images/Heroimage.jpg";
 import InfoSection from "../components/InfoSection";
+import CategorySection from "../components/CategorySection";
 
 const Home = () => {
   return (
@@ -40,6 +41,7 @@ const Home = () => {
         </div>
       </div>
       <InfoSection />
+      <CategorySection />
     </div>
   );
 };
