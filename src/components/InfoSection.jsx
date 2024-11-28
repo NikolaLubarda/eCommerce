@@ -36,7 +36,9 @@ const InfoSection = () => {
         {features.map((feature, index) => (
           <div
             key={index}
-            className="flex flex-col items-center text-center space-y-3 p-4 border rounded-lg bg-white shadow-md"
+            className="flex flex-col items-center text-center space-y-3 p-4 border rounded-lg bg-white shadow-md
+            transform transition-transform duration-300 hover:scale-105 cursor-pointer
+            "
           >
             {feature.icon}
             <h3 className="text-lg font-semibold">{feature.title}</h3>
