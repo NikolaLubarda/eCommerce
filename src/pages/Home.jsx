@@ -50,16 +50,15 @@ const Home = () => {
       </div>
       <InfoSection />
       <CategorySection />
-      <div>
+      <div className="container mx-auto py-12">
         <h1 className="text-3xl font-bold text-gray-900 text-center my-6 uppercase tracking-wide">
           Top products
         </h1>
-        {products.slice(0, 5).map((product) => (
-          <div>
-            {" "}
+        <div className="grid grid-cols-1 sm:grid-cole-2 md:grid-cols-4 lg:grid-cols-5 gap-6">
+          {products.slice(0, 5).map((product) => (
             <ProductCart product={product} />
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     </div>
   );
