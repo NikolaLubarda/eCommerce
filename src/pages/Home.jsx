@@ -6,58 +6,93 @@ import CategorySection from "../components/CategorySection";
 import { setProducts } from "../redux/productSlice";
 import { useDispatch, useSelector } from "react-redux";
 import ProductCart from "../components/ProductCart";
+import { useNavigate } from "react-router-dom";
 
 const Home = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const products = useSelector((state) => state.product.products);
+
   useEffect(() => {
     dispatch(setProducts(mockData));
-  }, []);
+  }, [dispatch]);
+
   return (
-    <div className="bg-white mt-2 px-4 md:px-16 lg:px-24">
-      <div className="container mx-auto py-4 flex flex-col md:flex-row space-x-2">
-        <div className="w-full md:w-4/12">
-          <div className="bg-red-600 text-white text-xs font-bold px-2 py-2.5">
-            Shop By Categories
+    <div className="bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950 text-white">
+      <div className="mx-auto max-w-7xl px-4 md:px-10 py-8">
+        <div className="grid grid-cols-1 md:grid-cols-[320px_1fr] gap-6">
+          {/* Left categories */}
+          <div className="rounded-2xl border border-white/10 bg-white/5 overflow-hidden">
+            <div className="bg-emerald-500 text-slate-950 text-xs font-extrabold px-4 py-3">
+              SHOP BY CATEGORIES
+            </div>
+            <ul className="space-y-3 p-4">
+              {Categories.map((category) => (
+                <li
+                  key={category}
+                  className="flex items-center text-sm font-bold text-white/85 hover:text-white cursor-pointer"
+                  onClick={() => navigate("/shop")}
+                >
+                  <span className="w-3 h-3 border border-emerald-400 rounded-full mr-3" />
+                  {category}
+                </li>
+              ))}
+            </ul>
           </div>
-          <ul className="space-y-4 bg-gray-100 p-4 border">
-            {Categories.map((category, index) => (
-              <li
-                className="flex items-center text-sm font-medium space-x-2"
-                key={index}
+
+          {/* Hero */}
+          <div className="relative h-[380px] rounded-2xl overflow-hidden border border-white/10 bg-white/5">
+            <img
+              className="h-full w-full object-cover"
+              src={heroImage}
+              alt="Hero"
+            />
+            <div className="absolute inset-0 bg-gradient-to-r from-slate-950/85 via-slate-950/30 to-transparent" />
+            <div className="absolute top-16 left-8 md:left-12 max-w-md">
+              <h2 className="text-3xl md:text-4xl font-extrabold tracking-tight">
+                Welcome to e<span className="text-emerald-400">Shop</span>
+              </h2>
+              <p className="text-white/80 mt-3 font-semibold">
+                Everything you need — clean design, fast shopping, demo
+                checkout.
+              </p>
+              <button
+                onClick={() => navigate("/shop")}
+                className="mt-6 rounded-xl bg-emerald-500 px-6 py-3 font-extrabold text-slate-950 hover:bg-emerald-400 transition"
+                type="button"
               >
-                <div className="w-3 h-3 border border-red-500 rounded-full mr-1">
-                  {" "}
-                </div>
-                <span>{category}</span>
-              </li>
-            ))}
-          </ul>
-        </div>
-        <div className="w-full md:w-9/12 mt-8 md:mt-0 h-96 relative">
-          <img className="h-full w-full" src={heroImage} alt="" />
-          <div className="absolute top-16 left-8">
-            <h2 className="text-2xl font-bold">Welcome to e-shop</h2>
-            <p className="text-xl mt-2.5 font-bold text-gray-800  ">
-              Everything you need
-            </p>
-            <button className="bg-red-600 px-8 py-1.5 text-white mt-4 hover:bg-red-700 transform transition-transform duration-300 hover:scale-105">
-              {" "}
-              SHOP NOW
-            </button>
+                SHOP NOW
+              </button>
+            </div>
           </div>
         </div>
       </div>
+
       <InfoSection />
       <CategorySection />
-      <div className="container mx-auto py-12">
-        <h1 className="text-3xl font-bold text-gray-900 text-center my-6 uppercase tracking-wide">
+
+      <div className="mx-auto max-w-7xl px-4 md:px-10 py-12">
+        <h1 className="text-3xl md:text-4xl font-extrabold text-center tracking-tight">
           Top products
         </h1>
-        <div className="grid grid-cols-1 sm:grid-cole-2 md:grid-cols-4 lg:grid-cols-5 gap-6">
-          {products.slice(0, 5).map((product) => (
-            <ProductCart product={product} />
+        <p className="text-white/60 text-center mt-2">
+          Hand-picked demo items from mock data.
+        </p>
+
+        <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
+          {products.slice(0, 10).map((product) => (
+            <ProductCart key={product.id} product={product} />
           ))}
+        </div>
+
+        <div className="mt-10 flex justify-center">
+          <button
+            onClick={() => navigate("/shop")}
+            className="rounded-xl border border-white/10 bg-white/5 px-6 py-3 font-extrabold text-white hover:bg-white/10 transition"
+            type="button"
+          >
+            View all products →
+          </button>
         </div>
       </div>
     </div>
